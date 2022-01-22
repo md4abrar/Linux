@@ -1,0 +1,41 @@
+# Checking file permissions
+
+ls -lrt
+
+total 7
+-rw-r--r-- 1 apache apache    0 Jan 22 07:01 t4
+-rw-r--r-- 1 apache apache    0 Jan 22 07:01 t3
+-rw-r--r-- 1 apache apache    0 Jan 22 07:01 t2
+-rw-r--r-- 1 apache apache    0 Jan 22 07:01 t1
+drwxr-xr-x 2 apache apache 4096 Jan 22 07:01 dir2
+
+In the above command output the first column of output depicts the file persmissions "-rw-r--r--"
+first "-" says that it is a file, instead of - if it is "d" it means it is a directory and if it is "l" it is a link.
+
+--- ==> 3 dashes represent 3 permission types r(read), w(write) and x(execute). First 3 dashes shows the file permissions of owner and next 3 are for Groups and last 3 are for everone else in the system
+
+
+# Modifying file permissions CHMOD
+
+4 = read, 2 = write, 1 = execute
+
+Permission 664 means read and write permission to owner and groups, Only read permission to others
+
+chmod 664 t4
+-rw-rw-r-- 1 apache apache  0 Jan 22 07:14 t4
+
+chmod 777 t4
+-rwxrwxrwx 1 apache apache  0 Jan 22 07:15 t4
+
+
+# Update ownership of file CHOWN
+
+chown abrar:abrar t3
+
+ll
+total 0
+-rw-r--r-- 1 root  root  0 Jan 22 11:22 t1
+-rw-r--r-- 1 root  root  0 Jan 22 11:22 t2
+#-rw-r--r-- 1 abrar abrar 0 Jan 22 11:22 t3
+ 
+ 

@@ -1,0 +1,30 @@
+# Creating Files and Directories
+
+# Create empty files
+touch t1 t2 t3 t4 t5
+
+# Empty a file or craete an empty file
+>File.txt 
+
+# Create and save a file 
+vi sample.txt
+
+# Create directory and navigate
+
+mkdir dir1 dir2 dir3
+
+cd dir2
+
+touch file1
+
+# Create directory, subdirectories and parent directories if does not exist
+
+mkdir -p parentDir/childDir
+
+# Delete an empty directory
+
+rmdir dir1
+
+# Delete non empty directories
+
+rm -rf dir2

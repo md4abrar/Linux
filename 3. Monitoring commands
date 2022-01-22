@@ -1,0 +1,61 @@
+# Check disk space
+
+[root@instance-20211213-1640 demo]# df -h
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        310M     0  310M   0% /dev
+tmpfs           341M     0  341M   0% /dev/shm
+tmpfs           341M   35M  306M  11% /run
+tmpfs           341M     0  341M   0% /sys/fs/cgroup
+/dev/sda3        39G  9.9G   29G  26% /
+
+
+# Check RAM space
+
+[root@instance-20211213-1640 demo]# free -h
+
+              total        used        free      shared  buff/cache   available
+Mem:           680M        373M         55M         24M        251M        160M
+Swap:          8.0G        160M        7.8G
+
+
+# CPU utilization
+
+load average for 5,10 and 15 minutes -  load average: 0.00, 0.00, 0.00
+
+top
+
+top - 11:28:47 up 36 days, 23:38,  1 user,  load average: 0.00, 0.00, 0.00
+Tasks: 132 total,   1 running,  77 sleeping,   0 stopped,   0 zombie
+%Cpu0  :  1.3 us,  1.7 sy,  0.0 ni, 92.4 id,  0.0 wa,  0.0 hi,  0.0 si,  4.6 st
+%Cpu1  :  1.3 us,  2.3 sy,  0.0 ni, 92.0 id,  0.0 wa,  0.0 hi,  0.0 si,  4.3 st
+KiB Mem :   697244 total,    55284 free,   384608 used,   257352 buff/cache
+KiB Swap:  8388604 total,  8223996 free,   164608 used.   162648 avail Mem
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+30373 root      20   0  109920   2396   1952 S   0.3  0.3   0:00.01 pidstat
+    1 root      20   0  214796   6576   5056 S   0.0  0.9   6:23.65 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:00.62 kthreadd
+    3 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 rcu_gp
+    4 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 rcu_par_gp
+    6 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 kworker/0:0H-kb
+    8 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 mm_percpu_wq
+    9 root      20   0       0      0      0 S   0.0  0.0   0:39.68 ksoftirqd/0
+
+
+# Check DISK Usage
+
+[root@instance-20211213-1640 ~]# du -sh .
+1.1G    .
+
+
+# Find the files by size
+
+[root@instance-20211213-1640 ~]# du -hs * | sort -rn | head
+604M    class
+261M    AppDeployment
+28M     nodejs-14.15.0-1.0.1.el7.x86_64.rpm
+27M     apache-tomcat-10.0.14
+12M     onlinebookstore
+12M     apache-tomcat-10.0.14.tar.gz
+

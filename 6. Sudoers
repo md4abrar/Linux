@@ -1,0 +1,22 @@
+# Add a user to a wheel group
+
+# Configurations are saved in /etc/sudoers file.
+
+[root@instance-20211213-1640 etc]# usermod -G agent1,agentx,wheel agent1
+
+# Users who are part of wheel group will have access to run privileged commands
+
+#This can be Verified using below command
+
+[agent1@instance-20211213-1640 ~]$ sudo useradd dummy
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for agent1:
+[agent1@instance-20211213-1640 ~]$ sudo cat /etc/passwd | grep dummy
+dummy:x:1003:1004::/home/dummy:/bin/bash

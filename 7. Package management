@@ -1,0 +1,47 @@
+# Packages are installed using yum, rpm, apt or dpkg based on the Linux Flavor 
+
+dpkg -i file.deb 		[Debian]
+rpm -i file.rpm 		[CentOS / RHEL]
+
+ rpm
+ it cannot manage dependency resolution like
+ 
+ Mode	Description
+-i	Installs a package
+-U	Upgrades a package
+-e	Erases a package
+-V	Verifies a package
+-q	Queries a package
+
+Ex: rpm -qa vim-enhanced, rpm -ivh somepackage.rpm , rpm -e somepackage
+
+
+# Yum Command	and its Purpose
+The main configuration file for YUM is at /etc/yum.conf, and all the repos are at /etc/yum.repos.d.
+
+yum -  can manage dependency resolution 
+
+install - 	Installs the specified packages
+remove	    -   Removes the specified packages
+search	    -   Searches package metadata for keywords
+info	      -   Lists description
+update	    -   Updates each package to the latest version
+repolist	  -   Lists repositories
+history	    -   Displays what has happened in past transactions
+
+Ex: yum install mysql -y   - install mysql package
+    yum whatprovides mysql - lists out the package names that can be used to install mysql
+    
+# Yum repositories can also be setup locally.
+
+cd /etc/yum.repos.d
+vi nginx.repo - or any repo name that you want to create  for and add below content
+
+[nginx-stable]
+name=nginx stable repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+

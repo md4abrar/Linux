@@ -1,0 +1,12 @@
+# scp - secure copy to copy files from one server to other
+
+# copy from 10.0.2.4 server to current server
+
+osboxes@master$  scp osboxes@10.0.2.4:/home/osboxes/slave_file .
+osboxes@10.0.2.4's password: 
+slave_file                                                                                                  100%    0     0.0KB/s   00:00    
+
+# For copying from linux to windows and vice-versa use winscp. 
+https://winscp.net/eng/download.php
+
+# explore ftp rsync and other commands

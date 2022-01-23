@@ -1,0 +1,67 @@
+# Installed packages can be turned on / off based on need using service in older systems and using systemctl in the new version of OS
+
+[root@instance-20211213-1640 yum.repos.d]# service nginx status
+
+Redirecting to /bin/systemctl status nginx.service
+● nginx.service - nginx - high performance web server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+     Docs: http://nginx.org/en/docs/
+
+# Above status shows nginx is inactive and has some issues
+
+[root@instance-20211213-1640 ~]# service nginx start
+Redirecting to /bin/systemctl start nginx.service
+
+[root@instance-20211213-1640 ~]# service nginx status
+Redirecting to /bin/systemctl status nginx.service
+● nginx.service - nginx - high performance web server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
+   Active: active (running) since Sun 2022-01-23 10:14:08 GMT; 5s ago
+     Docs: http://nginx.org/en/docs/
+  Process: 32272 ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf (code=exited, status=0/SUCCESS)
+ Main PID: 32273 (nginx)
+    Tasks: 3
+   Memory: 4.0M
+   CGroup: /system.slice/nginx.service
+           ├─32273 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf
+           ├─32274 nginx: worker process
+           └─32275 nginx: worker process
+
+Jan 23 10:14:08 instance-20211213-1640 systemd[1]: Starting nginx - high performance web server...
+Jan 23 10:14:08 instance-20211213-1640 systemd[1]: Started nginx - high performance web server.
+
+
+# Above can also be achieved using systemctl 
+
+[root@instance-20211213-1640 ~]# systemctl status nginx
+
+● nginx.service - nginx - high performance web server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
+   Active: active (running) since Sun 2022-01-23 10:14:08 GMT; 1min 57s ago
+     Docs: http://nginx.org/en/docs/
+  Process: 32272 ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf (code=exited, status=0/SUCCESS)
+ Main PID: 32273 (nginx)
+    Tasks: 3
+   Memory: 4.0M
+   CGroup: /system.slice/nginx.service
+           ├─32273 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf
+           ├─32274 nginx: worker process
+           └─32275 nginx: worker process
+
+Jan 23 10:14:08 instance-20211213-1640 systemd[1]: Starting nginx - high performance web server...
+Jan 23 10:14:08 instance-20211213-1640 systemd[1]: Started nginx - high performance web server.
+
+options available for service or systemctl command - start, stop, restart, status, reload.
+
+# Service will be running as a process and hence can be viewed using ps command as below:
+
+[root@instance-20211213-1640 ~]# ps -eaf | grep nginx
+root       751 31829  0 10:17 pts/4    00:00:00 grep --color=auto nginx
+root     32273     1  0 10:14 ?        00:00:00 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf
+nginx    32274 32273  0 10:14 ?        00:00:00 nginx: worker process
+nginx    32275 32273  0 10:14 ?        00:00:00 nginx: worker process
+
+# To turn on a service by default on server start up use command - 
+
+chkconfig nginx on

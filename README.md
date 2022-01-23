@@ -12,6 +12,6 @@ Linux concepts for all
 7. Package management
 8. Services
 9. Copying files to and from servers
-10. Run levels
+10. Exit codes and redirection
 11. Inode numbers
 12. Networking commands

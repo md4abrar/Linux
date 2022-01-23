@@ -1,0 +1,28 @@
+# User creation
+
+# You need previleged access to do this action
+
+# User can be created using old version command - useradd or new utility - adduser
+
+useradd agent1
+or
+adduser agent1
+to set/reset password 
+
+passwd agent1
+
+# To add a user to a group 
+
+#Create a agentx group
+[root@instance-20211213-1640 ~]# groupadd agentx
+
+# Modify agent1 users group and add to agentx group
+[root@instance-20211213-1640 ~]# usermod -G agent1,agentx agent1
+
+# Check which all groups a user is part of
+
+[root@instance-20211213-1640 ~]# groups agent1
+agent1 : agent1 agentx
+
+# To modify an existing group
+groupmod -n group_new group_old

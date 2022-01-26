@@ -1,3 +1,5 @@
+Note: standard input = 0, standard output  = 1, standard error = 2
+
 # When the command that is run is completed without errors the exit status will be zero.
 
 cat file.txt

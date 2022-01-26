@@ -13,5 +13,5 @@ Linux concepts for all
 8. Services
 9. Copying files to and from servers
 10. Exit codes and redirection
-11. Inode numbers
-12. Networking commands
+11. Networking commands
+12. Mysql

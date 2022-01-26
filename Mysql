@@ -1,0 +1,116 @@
+# Basic MySQL Query Commands:-
+
+
+1. SELECT: This statement is used to retrieve the data from the tables and views.
+Syntax:SELECT * FROM [TABLE NAME];
+Example:SELECT * FROM EMPLOYEE;
+
+2. SELECT DISTINCT: This statement used to retrieve the distinct data from the table and view.
+Syntax:SELECT DISTINCT [COLUMN NAME] FROM [TABLE NAME];
+Example:SELECT DISTINCT EMP_NAME FROM EMPLOYEE;
+
+3. WHERE: This MySQL Query command is used to filter the data for specific value
+Syntax:SELECT * FROM [TABLE NAME] WHERE [CONDITION];
+Example:SELECT * FROM EMPLOYEE WHERE EMP_ID=200;
+
+4. AND: This condition is used to filter the data on the basis of conditions.
+Syntax:SELECT [COLUMN NAMES] FROM [TABLE NAME] WHERE [CONDITION] AND [CONDITON];
+Example:SELECT EMP_NAME, FROM EMPLOYEE WHERE EMP_ID=200 AND EMP_COUNTRY=”INDIA”;
+
+5. OR: This MySQL Query Command combines the data from the table for the specific condition.
+Syntax:SELECT [COLUMN NAMES] FROM [TABLE NAME] WHERE TRUE OR FALSE
+Example:SELECT * FROM EMPLOYEE WHERE EMP_COUNTRY=”INDIA” OR EMP_COUNTRY =”USA”;
+
+6. IN: This operator helps in filtering the data based on a value match.
+Syntax:SELECT COLUMN1, COLUMN2… FROM [TABLE NAME] WHERE [COLUMN NAME] IN (‘val1’,’val2’);
+Example:SELECT EMP_NAME, EMP_SALARY FROM EMPLOYEE WHERE EMP_COUNTRY IN (‘INDIA’,‘USA’, ‘NZ’);
+
+7. ORDER BY: It is used to sort the data in a particular order for a particular column in ascending or descending order.
+Syntax:SELECT COLUMN1, COLUMN2, FROM [TABLE NAME] ORDER BY Column1 desc, Column2 asc;
+Example:SELECT EMP_NAME, EMP_ID FROM EMPLOYEE ORDER BY EMP_NAME desc, EMP_ID asc;
+
+8. LIKE: This MySQL Query Command is used to retrieve the data from the table for the specific pattern.
+Syntax:SELECT COLUMN1, COLUMN2 FROM [TABLE NAME] WHERE COLUMN1 Like’’;
+Example:SELECT EMP_ID, EMP_NAME, EMP_SALARY FROM EMPLOYEE WHERE EMP_NAME like‘SA%’;
+
+9. BETWEEN: It is used to range the data between the two conditions.
+Syntax:SELECT Column1, Column2 FROM EMPLOYEE WHERE Column3 BETWEEN val1 AND val2;
+Example:SELECT EMP_ID, EMP_NAME FROM EMPLOYEE WHERE EMP_SAL BETWEEN 2000 AND 5000;
+
+10. IS NULL: This is used for checking the value or retrieving the data for the particular column is null.
+Syntax:SELECT Column1, Column2 FROM [TABLE NAME] Column3 IS NULL;
+Example:SELECT EMP_ID, EMP_NAME FROM EMPLOYEE WHERE EMP_SAL IS NULL;
+
+
+
+# Intermediate MySQL Query Commands
+The intermediate commands are listed below.
+
+11. INSERT: This statement allows you to insert one or more rows in the table.
+Syntax:INSERT INTO TABLE NAME (Column1, Column2,..) VALUES (val1, val2..);
+Example:INSERT INTO EMPLOYEE (EMP_NAME, EMP_SAL) Values (‘TOM’,’3000’);
+
+12. UPDATE: This MySQL Query command is used to update the specific table and column for the particular record.
+Syntax:UPDATE [TABLE NAME] SET COLUMN1 =’’ WHERE COLUMN2 =’’;
+Example:UPDATE EMPLOYEE SET EMP_SAL=6000 WHERE EMP_ID=200;
+
+13. DELETE: The Command is used to delete the record from the table for a particular value.
+Syntax:DELETE FROM [TABLE NAME] WHERE CONDITION;
+Example:DELETE FROM EMPLOYEE WHERE EMP_ID=154;
+
+14. INNER JOIN: It allows you to retrieve the data from two table matches in one and other tables.
+Syntax:SELECT COLUMN1, COLUMN2 FROM [TABLE 1] INNER JOIN [TABLE 2] ON Condition;
+Example:SELECT EMP_NAME, EMP_COUNTRY, DEP_ID FROM EMPLOYEE EMP INNER JOIN DEPARTMENT DEP on EMP.DEP_ID= DEP.DEP_ID;
+
+15. LEFT JOIN: It helps you in providing the data from two or more tables and it will retrieve all the columns from the left table and will provide the data from the right table that matches.
+Syntax:SELECT T1.C1, T2.C2 FROM TABLE T1 LEFT JOIN TABLE T2 ON T1.C1= T2.C1;
+Example:SELECT E.EMP_ID, D.DEP_ID FROM EMPLOYEE E LEFT JOIN DEP D ON E.DEP_ID = D.DEP_ID;
+
+16. RIGHT JOIN: This MySQL Query command helps in retrieving the data from two or more tables, taking the full records from the right table, and matches the data with the left table to show the records.
+Syntax:SELECT T1.C1, T2.C2 FROM TABLE T1 RIGHT JOIN TABLE T2 ON T1.C1= T2.C1;
+Example:SELECT E.EMP_ID, D.DEP_ID FROM EMPLOYEE E RIGHT JOIN DEP D ON E.DEP_ID = D.DEP_ID;
+
+17. CROSS JOIN: It will provide the Cartesian product of rows of joined tables like if 10 rows in each table it will simply multiply 10*10=100 records.
+Syntax:SELECT * FROM T1 CROSS JOIN T2;
+Example:SELECT * FROM EMPLOYEE EMP CROSS JOIN DEP WHERE EMP.DEP_ID= DEP.DEP_ID;
+
+18. GROUP BY: This is used to get the data for the particular value in the combined form.
+Syntax:SELECT Column1, Column2 FROM TABLE WHERE CONDITION Group by Col2;
+Example:SELECT Count (*), EMP_STATUS FROM EMPLOYEE Group by EMP_STATUS;
+
+19. UNION and UNION ALL: It’s allows you to retrieve the data of multiple queries.
+Syntax:SELECT Col1, Col2 from T1 UNION SELECT Col1, Col2 FROM T2;
+Example:SELECT ID FROM T1 UNION ALL SELECT ID FROM T2;
+
+20. DROP: This statement is used for dropping the table from the database.
+Syntax:DROP TABLE [TABLE NAME] Condition;
+Example:DROP TABLE T1, DROP TABLE Like ‘%SA%’;
+
+
+
+# Advanced MySQL query commands
+
+The advanced commands are listed below.
+1. CTE (common table expression): These Commands are used to retrieve the data from the tables.
+Syntax:WITH CTE_NAME (Column1, Column2) AS (QUERY)
+SELECT * FROM CTE_NAME;
+Example:WITH EMP_INDIA AS (SELECT EMP_ID, EMP_NAME FROM EMPLOYEE WHERE EMP_COUNTRY=’INDIA’) SELECT EMP_NAME FROM EMP_INDIA WHERE EMP_ID BETWEEN 1 AND 100;
+
+2. SUBQUERY: It means a nested query used for retrieving the data.
+Syntax:SELECT Col1, Col2 FROM TABLE T1 WHERE COL3 in (SELECT Col3 from Table T2 WHERE Condition);
+Example:SELECT EMP_ID, EMP_NAME FROM EMPLOYEE WHERE EMP_SAL in (Select SAL FROM SALARY WHERE Location=’INDIA’)
+
+3. TRANSACTION: This is used to start, commit, and rollback the particular query.
+Syntax:START TRANSACTION STATEMENTS TO PERFORM COMMIT;
+
+4. SET: Setting auto-commit off:
+Syntax:SET autocommit= OFF; Or SET autocommit= 0;
+
+5. CREATE DATABASE: This MySQL Query command is used to create the new database.
+Syntax:CREATE DATABASE DATABASE_NAME;
+Syntax:SHOW CREATE DATABASE EMP_SAL_CALCULATION;
+To check the database available:
+Syntax:SHOW DATABASES;
+
+6. DROP DATABASE: It is used to drop the database from the server.
+Syntax:DROP DATABASE database_name; Or DROP SCHEMA database_name;

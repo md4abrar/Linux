@@ -75,3 +75,17 @@ traceroute to google.com (172.217.1.206), 30 hops max, 60 byte packets
  6  108.170.246.33 (108.170.246.33)  2.876 ms 142.250.232.96 (142.250.232.96)  0.900 ms 108.170.235.112 (108.170.235.112)  3.021 ms
  7  108.170.246.67 (108.170.246.67)  0.971 ms 142.251.77.65 (142.251.77.65)  0.699 ms  0.673 ms
  8  den16s02-in-f14.1e100.net (172.217.1.206)  0.608 ms  0.724 ms  0.698 ms
+ 
+ #  Check which all ports are open in a particular server from outside
+ 
+ [root@instance-20211213-1640 class3]# nmap 129.158.63.122
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2022-01-26 06:35 GMT
+Nmap scan report for 129.158.63.122
+Host is up (0.00033s latency).
+Not shown: 999 filtered ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap done: 1 IP address (1 host up) scanned in 4.23 seconds
+

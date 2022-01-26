@@ -1,0 +1,77 @@
+# Check ip of your server
+ifconfig
+
+or 
+
+ip addr
+
+# Test if a particular server or website is reachable from your server
+
+[root@instance-20211213-1640 class3]# ping google.com
+PING google.com (172.217.1.206) 56(84) bytes of data.
+64 bytes from den16s02-in-f14.1e100.net (172.217.1.206): icmp_seq=1 ttl=122 time=0.664 ms
+64 bytes from den16s02-in-f14.1e100.net (172.217.1.206): icmp_seq=2 ttl=122 time=0.685 ms
+64 bytes from den16s02-in-f14.1e100.net (172.217.1.206): icmp_seq=3 ttl=122 time=0.695 ms
+64 bytes from den16s02-in-f14.1e100.net (172.217.1.206): icmp_seq=4 ttl=122 time=0.744 ms
+
+
+# To check the open ports and to see which all external systems are connected to the services running in your server 
+
+netstat -anlp
+
+Ex:
+# ssh connections can be seen below
+
+[root@instance-20211213-1640 ~]# netstat -anlp | grep 223.186.102.212  # This is my machines public ip
+tcp        0      0 10.0.0.39:22            223.186.102.212:60520   ESTABLISHED 14584/sshd: opc [pr
+tcp        0     64 10.0.0.39:22            223.186.102.212:60540   ESTABLISHED 28066/sshd: opc [pr
+
+
+# It is used for retrieving information about DNS name servers  - advanced version of nslookup
+
+# nslookup
+[root@instance-20211213-1640 class3]# nslookup google.com
+Server:         169.254.169.254
+Address:        169.254.169.254#53
+
+Non-authoritative answer:
+Name:   google.com
+Address: 172.217.1.206
+Name:   google.com
+Address: 2607:f8b0:4004:801::200e
+
+# dig
+[root@instance-20211213-1640 class3]# dig google.com
+
+; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el7_9.8 <<>> google.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35517
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;google.com.                    IN      A
+
+;; ANSWER SECTION:
+google.com.             79      IN      A       172.217.1.206
+
+;; Query time: 0 msec
+;; SERVER: 169.254.169.254#53(169.254.169.254)
+;; WHEN: Wed Jan 26 06:26:55 GMT 2022
+;; MSG SIZE  rcvd: 55
+
+
+# Find the route it is taking to reach a particular website from your server
+
+[root@instance-20211213-1640 class3]# traceroute google.com
+traceroute to google.com (172.217.1.206), 30 hops max, 60 byte packets
+ 1  140.91.196.81 (140.91.196.81)  0.110 ms 140.91.197.83 (140.91.197.83)  0.105 ms 140.91.196.153 (140.91.196.153)  0.097 ms
+ 2  4.16.73.206 (4.16.73.206)  0.611 ms  0.605 ms  0.586 ms
+ 3  ae60.edge5.Washington12.Level3.net (4.16.73.205)  0.653 ms  0.674 ms  0.602 ms
+ 4  142.250.166.242 (142.250.166.242)  2.818 ms  1.819 ms 142.250.168.94 (142.250.168.94)  2.772 ms
+ 5  * * *
+ 6  108.170.246.33 (108.170.246.33)  2.876 ms 142.250.232.96 (142.250.232.96)  0.900 ms 108.170.235.112 (108.170.235.112)  3.021 ms
+ 7  108.170.246.67 (108.170.246.67)  0.971 ms 142.251.77.65 (142.251.77.65)  0.699 ms  0.673 ms
+ 8  den16s02-in-f14.1e100.net (172.217.1.206)  0.608 ms  0.724 ms  0.698 ms

@@ -1,0 +1,74 @@
+# When the command that is run is completed without errors the exit status will be zero.
+
+cat file.txt
+hello world
+echo $?
+0
+
+
+
+# When the command that is run is not completed without errors the exit status will be non zero.
+
+cat doesnotexist.txt
+cat: doesnotexist.txt: No such file or directory
+echo $?
+1
+
+
+
+# You can verify the exit status of a particular command and decide further actions based on exit code of some command
+
+#!/bin/bash
+
+cat file.txt 
+
+if [ $? -eq 0 ]
+then
+  echo "The script ran ok"
+  exit 0
+else
+  echo "The script failed" >&2
+  exit 1
+fi
+
+
+
+# To manually pass an exit code based on some condition you can also pass as below 
+exit 1
+
+
+# To suppress the exit code from printing on terminal, we can redirect the error to /dev/null file
+
+2>/dev/null
+
+Ex: 
+[root@instance-20211213-1640 class3]# ls -lrt
+
+drwxr-xr-x 2 root  root    6 Jan 25 15:12 dir3
+-rw-r--r-- 1 root  root  411 Jan 25 15:15 dir_content
+-rw-r--r-- 1 root  root   21 Jan 25 15:12 sample.txt
+
+[root@instance-20211213-1640 class3]# cat file 2>/dev/null
+[root@instance-20211213-1640 class3]# echo $?
+1
+
+# To pass exit code 0 even if there in an error you can use OR statement like below in a script
+
+[root@instance-20211213-1640 ~]# cat script
+cat file 2>/dev/null || exit 0
+
+[root@instance-20211213-1640 ~]# ./script
+
+[root@instance-20211213-1640 ~]# echo $?
+0
+
+
+
+# When the file did not exist it sent the exit code as 1 but it is suppressed from printing on the terminal
+[root@instance-20211213-1640 class3]# cat file_does_not_exist2 2>/dev/null
+
+[root@instance-20211213-1640 class3]# cat file_does_not_exist 2>/dev/null
+This is test
+
+# To suppress both standard error (2) and standard output (1) to a /dev/null, you can use below command:
+cat file > /dev/null 2>&1

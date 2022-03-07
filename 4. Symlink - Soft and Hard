@@ -1,10 +1,15 @@
 # SOFT LINK
 
+# create a file
+[root@instance-20211213-1640 demo]# touch original_file
+
+# list the files
+
 [root@instance-20211213-1640 demo]# ll
 total 0
 -rw-r--r-- 1 root  root  0 Jan 23 07:41 original_file
 
-# soft link of a file
+# create soft link of a file
 
 [root@instance-20211213-1640 demo]# ln -s original_file link_to_orig_file   # These files can be in different locations in the server as well
 
